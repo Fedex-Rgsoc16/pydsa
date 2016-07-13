@@ -5,10 +5,10 @@ def get_divide(a):
     s = len(a)
     L=[]
     R=[]
-    for i in xrange(0,s/2):
+    for i in range(0,s/2):
         L.append(a[i])
 
-    for i in xrange(s/2,s):
+    for i in range(s/2,s):
         R.append(a[i])
 
     return [L,R]
