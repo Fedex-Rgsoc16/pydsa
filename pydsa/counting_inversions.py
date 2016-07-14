@@ -1,6 +1,8 @@
 # Counting Inversions Using Merge Sort
 # Complexity: O(nlog(n))
 
+# get_divide function divides the array into left and right halves
+
 
 def get_divide(a):
     size = len(a)
@@ -15,12 +17,16 @@ def get_divide(a):
 
     return [Left, Right]
 
+# count function merges the two sorted arrays and count the number of
+# inversions
+
 
 def count(Left, Right):
     new_arr, i, j = [], 0, 0
     inv_count = 0
     size_left = len(Left)
     size_right = len(Right)
+
     while i < size_left and j < size_right:
         if Left[i] <= Right[j]:
             new_arr.append(Left[i])
@@ -29,11 +35,17 @@ def count(Left, Right):
             new_arr.append(Right[j])
             j += 1
             inv_count += (size_left - i)
+    # When a[i] > a[j], all elements remaining in left array are greater
+    # than a[j], hence num_inversions = inv_count + size_left_array - 1
+
     if i == size_left:
         new_arr.extend(Right[j:])
     else:
         new_arr.extend(Left[i:])
     return new_arr, inv_count
+
+# merge_sort function takes input of an array and recursively
+# applies merge sort to it
 
 
 def merge_sort(a):
@@ -47,6 +59,8 @@ def merge_sort(a):
     else:
         return a, 0
 
+
+# counting_inversions function returns the number of inversions
 
 def counting_inversions(a):
     """
