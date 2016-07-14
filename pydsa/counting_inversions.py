@@ -1,48 +1,49 @@
 # Counting Inversions Using Merge Sort
 # Complexity: O(nlog(n))
 
+
 def get_divide(a):
-    s = len(a)
-    L=[]
-    R=[]
-    mid = int(s/2)
-    for i in range(0,mid):
-        L.append(a[i])
+    size = len(a)
+    Left = []
+    Right = []
+    mid_size = int(size/2)
+    for index in range(0, mid_size):
+        Left.append(a[index])
 
-    for i in range(mid,s):
-        R.append(a[i])
+    for index in range(mid_size, size):
+        Right.append(a[index])
 
-    return [L,R]
+    return [Left, Right]
 
 
-def count(L, R):
-    m, i, j = [], 0, 0
-    icount = 0
-    l1 = len(L)
-    l2 = len(R)
-    while i < l1 and j < l2:
-        if L[i] <= R[j]:
-            m.append(L[i])
+def count(Left, Right):
+    new_arr, i, j = [], 0, 0
+    inv_count = 0
+    size_left = len(Left)
+    size_right = len(Right)
+    while i < size_left and j < size_right:
+        if Left[i] <= Right[j]:
+            new_arr.append(Left[i])
             i += 1
         else:
-            m.append(R[j])
+            new_arr.append(Right[j])
             j += 1
-            icount += (l1-i)
-    if i == l1:
-        m.extend(R[j:])
+            inv_count += (size_left - i)
+    if i == size_left:
+        new_arr.extend(Right[j:])
     else:
-        m.extend(L[i:])
-    return m, icount
+        new_arr.extend(Left[i:])
+    return new_arr, inv_count
 
 
 def merge_sort(a):
-    l = len(a)
-    if l >= 2:
-        [L,R] = get_divide(a)
-        L,lInv = merge_sort(L)
-        R,rInv = merge_sort(R)
-        M,mInv = count(L,R)
-        return M,(lInv + rInv + mInv)
+    size_arr = len(a)
+    if size_arr >= 2:
+        [Left, Right] = get_divide(a)
+        Left, lInv = merge_sort(Left)
+        Right, rInv = merge_sort(Right)
+        Mid, mInv = count(Left, Right)
+        return Mid, (lInv + rInv + mInv)
     else:
         return a, 0
 
@@ -57,5 +58,5 @@ def counting_inversions(a):
     5
 
     """
-    p,q = merge_sort(a)
-    return q
+    arr, num_inversions = merge_sort(a)
+    return num_inversions
