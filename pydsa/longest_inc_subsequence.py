@@ -9,8 +9,7 @@ def longest_inc_subsequence(arr):
 	>>> from pydsa import longest_inc_subsequence
 	>>> arr = [1, 12, 7, 0, 23, 11, 52, 31, 61, 69, 70, 2]
 	>>> longest_inc_subsequence(arr)
-	7 
-
+	7
 	"""
 
 	size = len(arr)
