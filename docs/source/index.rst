@@ -11,6 +11,7 @@ It is currently in it's initial phase of development.
        searching.rst
        sorting.rst
        license.rst
+       graph_traversal.rst
 
 
 Contributing
