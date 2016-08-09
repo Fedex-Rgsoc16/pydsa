@@ -10,3 +10,4 @@ Breadth First Search
 --------------------
 
 .. autofunction:: pydsa.bfs
+
